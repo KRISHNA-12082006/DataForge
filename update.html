@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %} Update Profile {% endblock %}
+
+{% block main %}
+    <div class="mb-3">
+        <h1 style="color: green">Your Profile</h1>
+        <h2 style="color: #3e3e3e"> {{ username }}</h2>
+    </div>
+    <br>
+    <form action="/update" method="post">
+        <div class="mb-3">
+            <p style="display: inline-block; font-size:20px;">Change Username:</p>
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text" style="display: inline-block;">
+        </div>
+        <div class="mb-3">
+            <p style="display: inline-block; font-size:20px;">Change Password:</p>
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="password" placeholder="Password" type="text" style="display: inline-block;">
+        </div>
+        <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+    {% endblock %}

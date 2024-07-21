@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block main %}
+        <div class="container text-center">
+            <h1 class="display-4 rubik-glitch-pop">HOME</h1>
+        </div>
+
+    <div class="container mt-5">
+        <table class="table table-bordered table-responsive table-hover">
+            <tbody>
+                {% for table in show_tables %}
+                    <tr>
+                        <td class="bg-dark"><a href="{{ url_for('show_table', table_name=table) }}" class="no-decoration nav-link">{{ table }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

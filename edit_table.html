@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %} Table: {{ table_name }} {% endblock %}
+
+{% block main %}
+    <h2>Table: {{ table_name }}</h2>
+
+    <form method="POST">
+        <table class="table">
+            <tr id="new-row">
+                    {% for column in columns %}
+                        <td>
+                            <input type="text" class="form-control" name="{{ column.name }}" placeholder="{{ column.name }}">
+                        </td>
+                    {% endfor %}
+                </tr>
+        </table>
+
+        <!-- Add Row button -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" id="add-row-btn" disabled>Add Row</button>
+        </div>
+    </form><br>
+
+
+    <!-- Display existing rows -->
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                    <th>{{ column.name }}</th>
+                {% endfor %}
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    {% for column in columns %}
+                        <td>{{ row[column.name] }}</td>
+                    {% endfor %}
+                    <td>
+                        <!-- Add edit/delete buttons here -->
+                        <button class="btn btn-sm btn-info"><a class="no-decoration" href="{{ url_for('edit_row', table_name=table_name, key=columns[0].name, key_value=row[columns[0].name]) }}">Edit Row</a></button>
+                        <button class="btn btn-sm btn-danger"><a class="no-decoration" href="{{ url_for('delete_row', table_name=table_name, key=columns[0].name, key_value=row[columns[0].name]) }}">Delete</a></button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+
+{% block scripts %}
+    <script>
+        // Enable "Add Row" button only if all input fields are filled
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('#new-row input');
+            const addButton = document.getElementById('add-row-btn');
+
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    let allFilled = true;
+                    inputs.forEach(input => {
+                        if (input.value.trim() === '') {
+                            allFilled = false;
+                        }
+                    });
+                    addButton.disabled = !allFilled;
+                });
+            });
+        });
+    </script>
+{% endblock %}

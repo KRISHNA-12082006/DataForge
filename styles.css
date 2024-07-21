@@ -1,0 +1,58 @@
+body {
+    background: url('/static/abstract_background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #e0e0e0;
+}
+
+.rubik-glitch-pop {
+    font-family: 'Cinzel', cursive;
+    font-weight: bolder;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.hollow_btn {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    height: 30px;
+    width: 170px;
+    color: #1abc9c;
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.alert {
+    opacity: 0.9;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly opaque alert background */
+    color: #ffffff;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    color: #e0e0e0;
+}
+
+.navbar .nav-link {
+    color: #dddddd;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #1abc9c;
+}
+
+.alert {
+    border-left: 5px solid #1abc9c;
+}
+
+.card-body {
+    color: #dddddd;
+}
+
+.no-decoration {
+    text-decoration: none;
+    color: #dddddd;
+}

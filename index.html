@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <header class="bg-dark py-5">
+        <div class="container text-center">
+            <h1 class="display-4 rubik-glitch-pop">Welcome to DataForge</h1>
+            <p class="lead">Your personal data management solution</p>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="fw-bold">What is DataForge?</h2>
+                <p>DataForge is a powerful web application that allows you to create, manage, and share custom data tables. Whether you're organizing a project, managing inventory, or collecting research data, DataForge provides the flexibility you need.</p>
+            </div>
+            <div class="col-md-6">
+                <h2 class="fw-bold">Key Features</h2>
+                <ul class="list-unstyled">
+                    <li>&#10004; Create custom tables with your own fields</li>
+                    <li>&#10004; Manage data with easy-to-use forms</li>
+                    <li>&#10004; Set permissions for collaborative work</li>
+                    <li>&#10004; Secure your data with user authentication</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="text-center">How to Get Started</h2>
+                <div class="d-flex justify-content-around mt-4">
+                    <div class="card bg-dark text-center" style="width: 18rem;">
+                        <div class="card-body">
+                            {% if session["user_id"] %}
+                                <h5 class="card-title">Go to Home</h5>
+                                <p class="card-text">Check your contributions on DataForge.</p>
+                                <a href="/home" class="btn btn-primary"><span class="nav-link">Home</span></a>
+                            {% else %}
+                                <h5 class="card-title">1. Register</h5>
+                                <p class="card-text">Create your free account to start using DataForge.</p>
+                                <a href="/register" class="btn btn-primary"><span class="nav-link">Register Now</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card bg-dark text-center" style="width: 18rem;">
+                        <div class="card-body">
+                            {% if session["user_id"] %}
+                            <h5 class="card-title">Create a Table</h5>
+                            {% else %}
+                            <h5 class="card-title">2. Create a Table</h5>
+                            {% endif %}
+                            <p class="card-text">Design your custom table with the fields you need.</p>
+                            {% if session["user_id"] %}
+                                <a href="/add_table" class="btn btn-primary"><span class="nav-link">Create New</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card bg-dark text-center" style="width: 18rem;">
+                        <div class="card-body">
+                            {% if session["user_id"] %}
+                            <h5 class="card-title">Manage Your Data</h5>
+                            {% else %}
+                            <h5 class="card-title">3. Manage Your Data</h5>
+                            {% endif %}
+                            <p class="card-text">Add, edit, and organize your data effortlessly.</p>
+                            {% if session["user_id"] %}
+                                <a href="/user_tables" class="btn btn-primary"><span class="nav-link">Manage Data</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+}

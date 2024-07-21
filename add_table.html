@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %} Create Table {% endblock %}
+
+{% block main %}
+    <h2>Create A New Table</h2>
+    <form action="/add_table" method="post" id="create-table-form">
+        <div class="mb-3">
+            <label for="table_name">Table Name:</label>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="table_name" placeholder="Table Name" type="text" id="table_name">
+        </div>
+        <div class="mb-3" id="column-inputs">
+            <label>Columns:</label>
+            <div id="columns">
+                <!-- Initial column input -->
+                <div class="column-input mb-2">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" name="columns[]" placeholder="Column Name" type="text">
+                </div>
+            </div>
+            <button id="add-column-btn" type="button" class="hollow_btn">&plus; Add Column</button>
+            <button id="cancel-column-btn" type="button" class="hollow_btn ml-2">&minus; Remove column</button>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Create Table</button>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add column button event listener
+            document.getElementById("add-column-btn").addEventListener("click", function() {
+                let columnsDiv = document.getElementById("columns");
+                let newColumnInput = document.createElement("div");
+                newColumnInput.classList.add("column-input", "mb-2");
+                newColumnInput.innerHTML = `
+                    <input autocomplete="off" class="form-control mx-auto w-auto" name="columns[]" placeholder="Column Name" type="text">
+                `;
+                columnsDiv.appendChild(newColumnInput);
+            });
+
+            // Cancel column button event listener
+            document.getElementById("cancel-column-btn").addEventListener("click", function() {
+                let columnsDiv = document.getElementById("columns");
+                // Ensure at least one column input remains
+                if (columnsDiv.children.length > 1) {
+                    columnsDiv.removeChild(columnsDiv.lastElementChild);
+                }
+            });
+        });
+    </script>
+{% endblock %}
